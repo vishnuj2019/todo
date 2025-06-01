@@ -61,7 +61,7 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
           })
           res.status(200).json({
                success: true,
-               message: "user loggged in successfully",
+               message: `Welcome ${exists_user?.username}`,
                data: exists_user
 
           })
@@ -128,7 +128,7 @@ export const logout = async (req: Request, res: Response, next: NextFunction): P
                res.clearCookie("token")
                res.status(200).json({
                     success: true,
-                    message: "logout successfully",
+                    message: "See you again",
 
                })
 

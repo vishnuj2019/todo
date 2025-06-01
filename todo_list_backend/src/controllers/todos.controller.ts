@@ -101,6 +101,11 @@ export const searchTodo = async (req: Request, res: Response, next: NextFunction
                          counts: [{ $count: "Total_todos" }],
                          data: [
                               {
+                                   $match: {
+                                        title: new RegExp(searchTerm as string, "gi")
+                                   }
+                              },
+                              {
                                    $sort: {
                                         createdAt: -1
                                    }
@@ -110,33 +115,11 @@ export const searchTodo = async (req: Request, res: Response, next: NextFunction
                               },
                               {
                                    $limit: Number(limit)
-                              },
-                              {
-                                   $match: {
-                                        title: new RegExp(searchTerm as string, "gi")
-                                   }
                               },
 
+
                          ],
-                         paginationCount: [
-                              {
-                                   $skip: skip
-                              },
-                              {
-                                   $limit: Number(limit)
-                              },
-                              {
-                                   $match: {
-                                        title: new RegExp(searchTerm as string, "gi")
-                                   }
-                              },
-                              {
-                                   $sort: {
-                                        createdAt: -1
-                                   }
-                              },
-                              { $count: "filtered_count" }
-                         ]
+
                     }
                },
                {
@@ -145,16 +128,14 @@ export const searchTodo = async (req: Request, res: Response, next: NextFunction
                     }
                }
           ]);
-          const totalCounts = filteredTodos[0]?.counts.Total_todos || 0
-          const count = filteredTodos[0]?.paginationCount[0]?.filtered_count || 0
+          const totalCount = filteredTodos[0]?.counts.Total_todos || 0
           const data = filteredTodos[0]?.data || []
 
 
           res.status(200).json({
                success: true,
                message: "Todo searched successfully",
-               totalCounts,
-               count,
+               totalCount,
                data,
           })
      } catch (error) {
