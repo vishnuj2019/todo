@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { ITodos } from "../types/todos";
+import { ITodos } from "../types/todos.js";
 
 const todos_schema = new Schema<ITodos>({
      title: {

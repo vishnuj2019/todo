@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
-import ErrorHandler from '../utils/ErrorHandler'
+import ErrorHandler from '../utils/ErrorHandler.js'
 import jwt from 'jsonwebtoken'
 const { TokenExpiredError } = jwt
-import user_model from '../model/user.model'
+import user_model from '../model/user.model.js'
 import { Types } from 'mongoose'
 
 export const authenticateUser = async (req: Request, _res: Response, next: NextFunction) => {

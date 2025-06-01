@@ -1,8 +1,8 @@
 import { NextFunction, Response, Request } from "express";
-import ErrorHandler from "../utils/ErrorHandler";
-import user_model from "../model/user.model";
+import ErrorHandler from "../utils/ErrorHandler.js";
+import user_model from "../model/user.model.js";
 import { Types } from "mongoose";
-import todo_model from "../model/todos.model";
+import todo_model from "../model/todos.model.js";
 
 export const createTodo = async (req: Request, res: Response, next: NextFunction) => {
      try {

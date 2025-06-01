@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import { ICastError, ITokenExpiredError, IValidationError } from '../types/Errors'
+import { ICastError, ITokenExpiredError, IValidationError } from '../types/Errors.js'
 
 
 const handleError = (error: ICastError | ITokenExpiredError | IValidationError) => {

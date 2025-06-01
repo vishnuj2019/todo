@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express'
 import cookieParser from 'cookie-parser'
-import { errorMiddleware } from './middleware/ErrorMiddleware'
-import user_router from './router/user.router'
-import todos_router from './router/todos.router'
-import corsOptions from './config/corsOptions'
+import { errorMiddleware } from './middleware/ErrorMiddleware.js'
+import user_router from './router/user.router.js'
+import todos_router from './router/todos.router.js'
+import corsOptions from './config/corsOptions.js'
 import 'dotenv/config'
 
 

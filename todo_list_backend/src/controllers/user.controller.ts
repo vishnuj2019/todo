@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
-import ErrorHandler from '../utils/ErrorHandler'
-import user_model from '../model/user.model'
-import bcrypt from 'bcrypt'
+import ErrorHandler from '../utils/ErrorHandler.js'
+import user_model from '../model/user.model.js'
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 import { Types } from 'mongoose'
 

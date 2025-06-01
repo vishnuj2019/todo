@@ -1,7 +1,7 @@
 import express from 'express'
 const todos_router = express.Router()
-import { authenticateUser } from '../middleware/VerfiyMiddleware'
-import { createTodo, deleteTodo, getTodo, searchTodo, updateTodo } from '../controllers/todos.controller'
+import { authenticateUser } from '../middleware/VerfiyMiddleware.js'
+import { createTodo, deleteTodo, getTodo, searchTodo, updateTodo } from '../controllers/todos.controller.js'
 
 
 todos_router.route('/create').post(authenticateUser, createTodo)
