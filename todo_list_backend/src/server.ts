@@ -1,5 +1,5 @@
-import app from "./src/app"
-import { dbconnection } from "./src/config/dbconnection"
+import app from "./app"
+import { dbconnection } from "./config/dbconnection"
 
 
 const startSever = () => {
