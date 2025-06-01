@@ -1,5 +1,5 @@
 import express from 'express'
-import { forgetPassword, login, logout, signup, verifyUsername } from '../controller/user.controller'
+import { forgetPassword, login, logout, signup, verifyUsername } from '../controllers/user.controller'
 import { decodeToken } from '../middleware/VerfiyMiddleware'
 
 const user_router = express.Router()
