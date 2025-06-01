@@ -7,8 +7,8 @@ import { add_todo_schema_type } from '../../models/TodoModel'
 
 const initialState: ITodoState = {
      todos: [],
-     totalCounts: 0,
-     count: 0,
+     totalCount: 0,
+     isTodoUpdated: false,
      status: "Idle",
      error: null
 }
@@ -86,7 +86,11 @@ export const deletTodo = createAsyncThunk<IAdd_Update_Get_TodoResponse, string, 
 const todoSlice = createSlice({
      name: "todos",
      initialState,
-     reducers: {},
+     reducers: {
+          updateTodoState: (state) => {
+               state.isTodoUpdated = !state.isTodoUpdated
+          }
+     },
      extraReducers: (builder) => {
           builder
                .addCase(searchTodos.pending, (state, _action) => {
@@ -96,8 +100,7 @@ const todoSlice = createSlice({
                .addCase(searchTodos.fulfilled, (state, action) => {
                     state.status = "Fulfilled",
                          state.todos = action.payload.data,
-                         state.totalCounts = action.payload.totalCounts,
-                         state.count = action.payload.count
+                         state.totalCount = action.payload.totalCount
 
                })
                .addCase(searchTodos.rejected, (state, _action) => {
@@ -108,9 +111,9 @@ const todoSlice = createSlice({
                     state.status = "Pending"
 
                })
-               .addCase(createTodo.fulfilled, (state, action) => {
-                    state.status = "Fulfilled",
-                         state.todos = [action.payload?.data, ...state.todos]
+               .addCase(createTodo.fulfilled, (state, _action) => {
+                    state.status = "Fulfilled"
+                    //state.todos = [action.payload?.data, ...state.todos]
 
                })
                .addCase(createTodo.rejected, (state, _action) => {
@@ -144,9 +147,9 @@ const todoSlice = createSlice({
                     state.status = "Pending"
 
                })
-               .addCase(deletTodo.fulfilled, (state, action) => {
+               .addCase(deletTodo.fulfilled, (state, _action) => {
                     state.status = "Fulfilled"
-                    state.todos = state.todos?.filter((todo) => todo?._id !== action.payload?.data?._id!)
+                    //state.todos = state.todos?.filter((todo) => todo?._id !== action.payload?.data?._id!)
                })
                .addCase(deletTodo.rejected, (state, _action) => {
                     state.status = "Rejected"
@@ -157,3 +160,4 @@ const todoSlice = createSlice({
 })
 
 export default todoSlice.reducer
+export const { updateTodoState } = todoSlice.actions

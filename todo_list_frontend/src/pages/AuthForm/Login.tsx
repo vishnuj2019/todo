@@ -23,7 +23,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<login_schema_type>({
     resolver: zodResolver(login_schema),
   });
@@ -100,7 +100,7 @@ const Login = () => {
             </Link>
           </div>
           <button
-            type="submit"
+            type={isSubmitting ? "button" : "submit"}
             className="poppins-semibold text-white  my-5 w-full hover:cursor-pointer focus:oultine-none bg-orange-500 py-2 rounded-lg"
           >
             Login

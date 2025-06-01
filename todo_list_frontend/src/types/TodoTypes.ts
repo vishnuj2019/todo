@@ -18,16 +18,15 @@ export interface ITodoState {
      status: "Idle" | "Pending" | "Rejected" | "Fulfilled",
      error: IError | null,
      todos: ITodo[],
-     totalCounts: number,
-     count: number
+     totalCount: number,
+     isTodoUpdated: boolean
 
 }
 
 export interface ITodoResponse {
      success: boolean,
      message: string,
-     totalCounts: number,
-     count: number,
+     totalCount: number,
      data: ITodo[]
 }
 

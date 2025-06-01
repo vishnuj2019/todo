@@ -36,7 +36,7 @@ const Header = () => {
   return (
     <section className="bg-blue-700 py-5  text-white grid grid-cols-2 fixed  z-50 w-full top-0 left-0 poppins-regular">
       <div className="px-5 flex items-center ">
-        <Link to="/" className="text-lg poppins-medium block">
+        <Link to="/home" className="text-lg poppins-medium block">
           Todos
         </Link>
       </div>
@@ -44,7 +44,7 @@ const Header = () => {
         <Link to="/">
           Home
           <span
-            className={`transform h-[2px] block w-full bg-black  scale-0 transition-all  duration-200  ${
+            className={`transform h-[2px] block w-full bg-orange-500  scale-0 transition-all  duration-200  ${
               location === "/" && "scale-100  "
             } `}
           ></span>
@@ -52,14 +52,14 @@ const Header = () => {
         <Link to="/about">
           About
           <span
-            className={`transform h-[2px] block w-full bg-black  scale-0 transition-all  duration-200  ${
+            className={`transform h-[2px] block w-full bg-orange-500  scale-0 transition-all  duration-200  ${
               location === "/about" && "scale-100  "
             } `}
           ></span>
         </Link>
         <div onClick={() => setIsLogout(true)} className="hover:cursor-pointer">
           Logout
-          <span className="transform h-[2px] block w-full bg-black  scale-0 transition-all  duration-200"></span>
+          <span className="transform h-[2px] block w-full bg-orange-500  scale-0 transition-all  duration-200"></span>
         </div>
       </div>
       <div className="flex justify-end pr-5">

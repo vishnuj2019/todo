@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../features/store/store";
-import { deletTodo, searchTodos } from "../../features/slices/todosSlice";
+import {
+  deletTodo,
+  searchTodos,
+  updateTodoState,
+} from "../../features/slices/todosSlice";
 import { ITodoSearchOptions } from "../../types/TodoTypes";
 import AddTodo from "./AddTodo";
 import EditTodo from "./EditTodo";
@@ -26,7 +30,10 @@ const Todos = () => {
     edit: false,
   });
 
-  const { todos, totalCounts } = useSelector((state: RootState) => state.todos);
+  const { todos, totalCount, isTodoUpdated } = useSelector(
+    (state: RootState) => state.todos
+  );
+  console.log(isTodoUpdated);
   const [searchOptions, setSearchOption] = useState<ITodoSearchOptions>({
     searchTerm: "",
     page: 1,
@@ -34,9 +41,18 @@ const Todos = () => {
   });
 
   useEffect(() => {
+    if (todos?.length === 0) {
+      setSearchOption((prev) => ({
+        ...prev,
+        page: searchOptions?.page === 1 ? 1 : searchOptions?.page - 1,
+      }));
+    }
+  }, [todos]);
+  useEffect(() => {
     dispatch(searchTodos(searchOptions));
-  }, [searchOptions]);
-  let totalPage = Math.ceil(totalCounts / searchOptions?.limit);
+  }, [searchOptions, isTodoUpdated, deleteBtn?.isDelete]);
+
+  let totalPage = Math.ceil(totalCount / searchOptions?.limit);
 
   useEffect(() => {
     const element = document.getElementById("mainPage");
@@ -55,6 +71,7 @@ const Todos = () => {
       if (res.success) {
         toast.success(res.message);
         setDeleteBtn({ id: "", isDelete: false });
+        dispatch(updateTodoState());
       }
     } catch (error) {
       const err = error as IError;
