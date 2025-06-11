@@ -16,13 +16,15 @@ const initialState: ITodoState = {
 
 export const searchTodos = createAsyncThunk<ITodoResponse, ITodoSearchOptions, { rejectValue: IRejectType }>('todos/search', async (data: ITodoSearchOptions, { rejectWithValue }) => {
      try {
-          const response = await axiosInstance.get(`/api/v1/todos/search?searchTerm=${data.searchTerm}&page=${data.page}&limit=${data.limit}`)
+          const response = await axiosInstance.get(`/api/v1/todos/search?searchTerm=${data.searchTerm || ""}&page=${data.page}&limit=${data.limit}`)
+          console.log(response.data)
           return response.data
      } catch (error) {
           if (error instanceof AxiosError && error?.response) {
                return rejectWithValue(error?.response?.data)
           }
           else {
+               ``
                return rejectWithValue({ message: "Something went wrong when get todos" })
           }
      }

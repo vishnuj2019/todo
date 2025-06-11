@@ -14,7 +14,7 @@ const YesOrNoModel = ({
   handleCancel,
 }: IProps) => {
   return (
-    <div className="absolute w-full top-0 z-50 h-screen bg-gray-600/50 flex justify-center items-center">
+    <div className="absolute w-full top-0 z-50 left-0 h-screen bg-gray-600/50 flex justify-center items-center">
       <div className="bg-white w-3/4 md:w-1/4 flex flex-col items-center justify-center gap-y-5 p-5 rounded-md">
         <p className="text-xl poppins-medium text-black">{content}</p>
         <div className="flex w-full  justify-evenly">

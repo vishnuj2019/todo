@@ -16,13 +16,10 @@ const AddTodo = ({ setClose }: IFormProps) => {
   const {
     register,
     formState: { errors, isSubmitting },
-    watch,
     handleSubmit,
   } = useForm<add_todo_schema_type>({
     resolver: zodResolver(add_todo_schema),
   });
-
-  console.log(isSubmitting);
 
   const onSubmit = async (data: add_todo_schema_type) => {
     try {
@@ -37,9 +34,8 @@ const AddTodo = ({ setClose }: IFormProps) => {
       toast.error(err.message);
     }
   };
-  console.log(watch("priority"));
   return (
-    <section className="absolute w-full top-0 z-50 h-screen bg-gray-600/75 flex justify-center items-center">
+    <section className="absolute w-full left-0 top-0  z-50 h-screen bg-gray-600/75 flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white md:w-1/3 flex flex-col gap-y-2  rounded-md  py-5 "

@@ -6,9 +6,9 @@ const Layout = () => {
 
   const isAuth = /^(\/login|\/signup)$/.test(location);
   return (
-    <div className="poppins-regular ">
+    <div className="poppins-regular   " id="parent">
       {!isAuth && <Header />}
-      <div className="h-screen" id="mainPage">
+      <div className={`${!isAuth && " mt-[12vh]"}  `} id="child">
         <Outlet />
       </div>
     </div>

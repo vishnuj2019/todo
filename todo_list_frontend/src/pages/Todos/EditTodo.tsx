@@ -18,16 +18,6 @@ interface IFormProps {
   editBtn: IEditBtn;
 }
 const EditTodo = ({ setClose, editBtn }: IFormProps) => {
-  useEffect(() => {
-    const element = document.getElementById("mainPage");
-    if (element) {
-      element.style.overflowY = "hidden";
-    }
-
-    return () => {
-      element!.style.overflowY = "auto";
-    };
-  }, []);
   const dispatch = useDispatch<AppDispatch>();
   const {
     register,
@@ -55,7 +45,7 @@ const EditTodo = ({ setClose, editBtn }: IFormProps) => {
     }
   };
   return (
-    <section className="absolute w-full top-0 z-50 h-screen bg-gray-600/50 flex justify-center items-center">
+    <section className="absolute w-full top-0 left-0 z-50 h-screen bg-gray-600/50 flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white md:w-1/3 flex flex-col gap-y-2 py-2 rounded-md "

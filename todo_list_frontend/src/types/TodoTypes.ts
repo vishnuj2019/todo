@@ -10,7 +10,7 @@ export interface ITodo {
 }
 
 export interface ITodoSearchOptions {
-     searchTerm: string,
+     searchTerm?: string,
      page: number,
      limit: number
 }
