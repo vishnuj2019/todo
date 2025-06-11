@@ -90,6 +90,13 @@ export const searchTodo = async (req: Request, res: Response, next: NextFunction
           const { id } = req.body
           const skip = (Number(page) - 1) * 10
           const userObjectId = new Types.ObjectId(id)
+
+          let matchStage: { title?: RegExp } = {}
+
+
+          if (searchTerm) {
+               matchStage.title = new RegExp(searchTerm as string, "gi")
+          }
           const filteredTodos = await todo_model.aggregate([
                {
                     $match: {
@@ -101,9 +108,7 @@ export const searchTodo = async (req: Request, res: Response, next: NextFunction
                          counts: [{ $count: "Total_todos" }],
                          data: [
                               {
-                                   $match: {
-                                        title: new RegExp(searchTerm as string, "gi")
-                                   }
+                                   $match: matchStage
                               },
                               {
                                    $sort: {
